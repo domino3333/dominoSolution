@@ -151,5 +151,23 @@ public class mainController {
 
 		return "domino/adminPage";
 	}
+	
+	@GetMapping("/refresh")
+	public String refresh(Model model) {
+		
+		List<Member> memberList;
+		try {
+			memberList = memberService.selectMemberList();
+			model.addAttribute("memberList", memberList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "domino/adminPage";
+		
+	}
+	
+	
+	
 
 }

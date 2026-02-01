@@ -101,7 +101,12 @@ tr:hover {
 <body>
 
 	<div class="header">
-		<h1>DOMINO Admin</h1>
+		<h1>
+        <a href="/domino/refresh"
+           style="color: #1976d2; text-decoration: none;">
+            DOMINO Admin
+        </a>
+    </h1>
 		<span>회원 관리 페이지</span>
 	</div>
 
