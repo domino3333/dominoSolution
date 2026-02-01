@@ -4,6 +4,6 @@
 
 
 	<insert id="createAuth" parameterType="MemberAuth">
-		insert into memberAuth(member_no,auth) values(#{no},#{auth})
+		insert into memberAuth(no,auth) values(#{no},#{auth})
 	</insert>
 </mapper>

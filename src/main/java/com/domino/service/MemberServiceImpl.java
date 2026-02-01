@@ -57,4 +57,18 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public Member login(String id, String pw) throws Exception {
+		Member member = memberMapper.selectOneMemberById(id);
+		if(member.getPw().equals(pw)) {
+			//todo 로그인 성공 시 권한도 받아와서 이 member변수에 setAuthlist
+			Member temp = memberMapper.selectMemberAuthListById(id);
+			member.setMemberAuthList(temp.getMemberAuthList());
+			return member;
+		}
+		
+		return null;
+		
+	}
+
 }

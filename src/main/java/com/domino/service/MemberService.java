@@ -15,4 +15,6 @@ public interface MemberService {
 	void updateMember(Member member) throws Exception;
 
 	void deleteMember(long no) throws Exception;
+
+	Member login(String id, String pw) throws Exception;
 }

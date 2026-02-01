@@ -1,5 +1,7 @@
 package com.domino.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,5 +14,7 @@ public class Member {
 	private String age;
 	private String birthday;
 	private String gender;
+	
+	List<MemberAuth> memberAuthList;
 	
 }

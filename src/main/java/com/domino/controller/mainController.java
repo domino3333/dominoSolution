@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.domino.domain.Member;
+import com.domino.domain.MemberAuth;
 import com.domino.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,29 @@ public class mainController {
 			e.printStackTrace();
 		}
 		return "domino/signUpResult";
+		
+	}
+	
+	
+	@PostMapping("/login")
+	public String login(String id, String pw) {
+		try {
+			Member member = memberService.login(id,pw);
+			log.info(member.getMemberAuthList().toString());
+			if(member!=null) {
+				for(MemberAuth auth : member.getMemberAuthList()) {
+				    if(auth.getAuth().equals("ADMIN")) {
+				        return "domino/adminPage";
+				    }
+				}
+				return "domino/userPage";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		log.info("로그인 실패, main으로 돌아가기");
+		return "domino/main";
 		
 	}
 	

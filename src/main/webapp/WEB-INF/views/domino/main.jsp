@@ -104,15 +104,15 @@ body {
 			<span>Solution Login System</span>
 		</div>
 
-		<form action="/login" method="post">
+		<form action="/domino/login" method="post">
 			<div class="form-group">
-				<label for="userId">아이디</label> <input type="text" id="userId"
-					name="userId" placeholder="아이디를 입력하세요" required>
+				<label for="userId">아이디</label> <input type="text" id="id"
+					name="id" placeholder="아이디를 입력하세요" required>
 			</div>
 
 			<div class="form-group">
 				<label for="password">비밀번호</label> <input type="password"
-					id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+					id="pw" name="pw" placeholder="비밀번호를 입력하세요" required>
 			</div>
 
 			<button type="submit" class="login-btn">로그인</button>

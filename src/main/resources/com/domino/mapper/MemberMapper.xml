@@ -3,6 +3,7 @@
 <mapper namespace="com.domino.mapper.MemberMapper">
 
 
+	<!-- 회원가입 쿼리 -->
 	<insert id="insertMember" parameterType="Member">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
 			select
@@ -16,5 +17,39 @@
 		)
 		VALUES(#{no},#{id},#{pw},#{name},#{age},#{birthday},#{gender})
 	</insert>
+
+	<!-- 로그인할 때 id를 매개로 멤버를 받아오는 쿼리 -->
+	<select id="selectOneMemberById" parameterType="String"
+		resultType="Member">
+		select id,pw from dominoMember where id = #{id, jdbcType=VARCHAR}
+	</select>
+
+
+
+	<!-- id를 매개로 특정 사용자의 권한 리스트를 받아오는 조인 쿼리 -->
+	<select id="selectMemberAuthListById" parameterType="String"
+		resultMap="MemberMap">
+		select D.no, D.id,D.name, A.auth from dominoMember D join
+		memberAuth A on
+		D.no =A.no where D.id = #{id, jdbcType=VARCHAR}
+	</select>
+	
+	<resultMap type="Member" id="MemberMap">
+		<id property="no" column="no" />
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<collection property="memberAuthList" resultMap="authMap" />
+	</resultMap>
+
+	<resultMap type="MemberAuth" id="authMap">
+		<result property="no" column="no" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
+
+
+
+
+
 
 </mapper>
