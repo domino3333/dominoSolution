@@ -36,28 +36,32 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member selectOneMemberByNo(long no) throws Exception {
-		return null;
+		
+		return memberMapper.selectOneMemberByNo(no);
 	}
 
 	@Override
 	public List<Member> selectMemberList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return memberMapper.selectAllOfMembers();
 	}
 
 	@Override
+	@Transactional
 	public void updateMember(Member member) throws Exception {
-		// TODO Auto-generated method stub
+		
+		memberMapper.updateMember(member);
 
 	}
 
 	@Override
+	@Transactional
 	public void deleteMember(long no) throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public Member login(String id, String pw) throws Exception {
 		Member member = memberMapper.selectOneMemberById(id);
 		if(member.getPw().equals(pw)) {
@@ -69,6 +73,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return null;
 		
+	}
+
+	@Override
+	public Member selectOneMemberById(String id) throws Exception {
+		return memberMapper.selectMemberAuthListById(id);
 	}
 
 }

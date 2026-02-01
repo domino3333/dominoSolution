@@ -21,7 +21,8 @@
 	<!-- 로그인할 때 id를 매개로 멤버를 받아오는 쿼리 -->
 	<select id="selectOneMemberById" parameterType="String"
 		resultType="Member">
-		select id,pw from dominoMember where id = #{id, jdbcType=VARCHAR}
+		select id,pw from dominoMember where id = #{id,
+		jdbcType=VARCHAR}
 	</select>
 
 
@@ -29,15 +30,18 @@
 	<!-- id를 매개로 특정 사용자의 권한 리스트를 받아오는 조인 쿼리 -->
 	<select id="selectMemberAuthListById" parameterType="String"
 		resultMap="MemberMap">
-		select D.no, D.id,D.name, A.auth from dominoMember D join
+		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth from dominoMember D join
 		memberAuth A on
 		D.no =A.no where D.id = #{id, jdbcType=VARCHAR}
 	</select>
-	
+
 	<resultMap type="Member" id="MemberMap">
 		<id property="no" column="no" />
 		<result property="id" column="id" />
 		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="birthday" column="birthday" />
+		<result property="gender" column="gender" />
 		<collection property="memberAuthList" resultMap="authMap" />
 	</resultMap>
 
@@ -46,8 +50,36 @@
 		<result property="auth" column="auth" />
 	</resultMap>
 
+	<resultMap type="Member" id="MemberMap2">
+		<id property="no" column="no" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="gender" column="gender" />
+	</resultMap>
+
+	<!-- 모든 사용자를 받아옴 -->
+	<select id="selectAllOfMembers" resultMap="MemberMap2">
+		select no,name,age,gender from dominoMember
+	</select>
+
+	<!-- no를 매개로 특정 사용자의 권한 리스트를 받아오는 조인 쿼리 -->
+	<select id="selectOneMemberByNo" parameterType="long"
+		resultMap="MemberMap">
+		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth from dominoMember D join
+		memberAuth A on
+		D.no =A.no where D.no = #{no}
+	</select>
 
 
+	<update id="updateMember" parameterType="Member">
+		update dominoMember set
+		id = #{id},
+		name=#{name},
+		age=#{age},
+		birthday=#{birthday},
+		gender=#{gender}
+		 where no = #{no}
+	</update>
 
 
 

@@ -9,6 +9,8 @@ public interface MemberService {
 	void insertMember(Member member) throws Exception;
 
 	Member selectOneMemberByNo(long no) throws Exception;
+	
+	Member selectOneMemberById(String id) throws Exception;
 
 	List<Member> selectMemberList() throws Exception;
 
