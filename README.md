@@ -111,6 +111,18 @@ create table memberAuth(
     foreign key (no) references dominomember(no)
 );
 ```
+## 📸 실행 화면
+
+### 🏠 메인 화면
+![메인 화면](images/main.png)
+
+### 📋 회원 목록 화면
+![회원 목록](images/list.png)
+
+### 👤 회원 상세 화면
+![회원 상세](images/memberDetail.png)
+
+
 
 ### 🧩 삭제 정책 (Soft Delete)
 
