@@ -96,34 +96,41 @@ body {
 }
 </style>
 </head>
-<body>
 
-	<div class="login-container">
-		<div class="logo">
-			<h1>DOMINO</h1>
-			<span>Solution Login System</span>
-		</div>
 
-		<form action="/domino/login" method="post">
-			<div class="form-group">
-				<label for="userId">아이디</label> <input type="text" id="id"
-					name="id" placeholder="아이디를 입력하세요" required>
-			</div>
+<% if (request.getAttribute("message") != null) { %>
+    <script>
+        alert('<%= request.getAttribute("message") %>');
+    </script>
+    <% } %>
 
-			<div class="form-group">
-				<label for="password">비밀번호</label> <input type="password"
-					id="pw" name="pw" placeholder="비밀번호를 입력하세요" required>
-			</div>
-
-			<button type="submit" class="login-btn">로그인</button>
-		</form>
-		<form action="/domino/signUpForm" method="get" style="margin-top: 12px;">
-			<button type="submit" class="login-btn" style="background: #64b5f6;">회원가입</button>
-		</form>
-
-		<div class="footer">© 2026 Domino Solution. All rights reserved.
-		</div>
+<div class="login-container">
+	<div class="logo">
+		<h1>DOMINO</h1>
+		<span>Solution Login System</span>
 	</div>
+
+	<form action="/domino/login" method="post">
+		<div class="form-group">
+			<label for="userId">아이디</label> <input type="text" id="id" name="id"
+				placeholder="아이디를 입력하세요" required>
+		</div>
+
+		<div class="form-group">
+			<label for="password">비밀번호</label> <input type="password" id="pw"
+				name="pw" placeholder="비밀번호를 입력하세요" required>
+		</div>
+
+		<button type="submit" class="login-btn">로그인</button>
+	</form>
+	<form action="/domino/signUpForm" method="get"
+		style="margin-top: 12px;">
+		<button type="submit" class="login-btn" style="background: #64b5f6;">회원가입</button>
+	</form>
+
+	<div class="footer">© 2026 Domino Solution. All rights reserved.
+	</div>
+</div>
 
 </body>
 </html>

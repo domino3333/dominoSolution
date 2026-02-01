@@ -8,5 +8,7 @@
 </head>
 <body>
 
+
+	<h2>유저 페이지</h2>
 </body>
 </html>

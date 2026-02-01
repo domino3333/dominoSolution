@@ -3,6 +3,7 @@ package com.domino.controller;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,30 +50,27 @@ public class mainController {
 	
 	
 	@PostMapping("/login")
-	public String login(String id, String pw) {
+	public String login(String id, String pw,Model model) {
 		try {
 			Member member = memberService.login(id,pw);
 			log.info(member.getMemberAuthList().toString());
+			
 			if(member!=null) {
 				for(MemberAuth auth : member.getMemberAuthList()) {
 				    if(auth.getAuth().equals("ADMIN")) {
 				        return "domino/adminPage";
 				    }
 				}
+				
 				return "domino/userPage";
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		log.info("로그인 실패, main으로 돌아가기");
+		model.addAttribute("message","없는 아이디거나 비밀번호가 틀립니다.");
 		return "domino/main";
-		
 	}
-	
-	
-	
-	
-	
 	
 }
