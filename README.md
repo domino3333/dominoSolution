@@ -123,22 +123,25 @@ create table memberAuth(
 ![회원 상세](images/memberDetail.png)
 
 
+### 🚀 프로그램 흐름
+![flow](images/flow.png)
+
 
 ### 🧩 삭제 정책 (Soft Delete)
 
--회원 삭제 시 실제 데이터 삭제 ❌
--enabled 컬럼 값을 변경하여 비활성화 처리
+-회원 삭제 시 실제 데이터 삭제 ❌<br>
+-enabled 컬럼 값을 변경하여 비활성화 처리<br>
 -데이터 복구 및 이력 관리가 가능하도록 설계
 
 ### ⚠️ 부족한 점 및 개선 예정 사항
 
 회원 수정 페이지에서
-권한 버튼에 마우스를 올릴 경우 삭제(X) 버튼을 노출하고
-저장 시 권한을 수정하는 UI를 구현하고자 했으나,
-JavaScript 및 React에 대한 이해 부족으로 구현하지 못함
+권한 버튼에 마우스를 올릴 경우 삭제(X)<br>버튼을 노출하고
+저장 시 권한을 수정하는 UI를 구현하고자 했으나,<br>
+JavaScript 및 React에 대한 이해 부족으로 구현하지 못 하였음.
 
 세션 및 권한 관리에 대한 이해 부족으로
-권한 비교를 단순히 equals("ADMIN") 방식으로 처리함
+권한 비교를 단순히 equals("ADMIN") 방식으로 처리함<br>
 → 추후 Spring Security 기반 권한 관리 방식으로 개선 예정
 
 
