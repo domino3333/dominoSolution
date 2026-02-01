@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.domino.domain.Member;
 import com.domino.domain.MemberAuth;
 import com.domino.domain.Role;
+import com.domino.domain.SearchType;
 import com.domino.mapper.AuthMapper;
 import com.domino.mapper.MemberMapper;
 
@@ -78,6 +79,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member selectOneMemberById(String id) throws Exception {
 		return memberMapper.selectMemberAuthListById(id);
+	}
+
+	@Override
+	public List<Member> searchMembers(SearchType searchType) {
+		return memberMapper.searchMember(searchType);
 	}
 
 }

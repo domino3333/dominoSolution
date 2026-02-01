@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.domino.domain.Member;
 import com.domino.domain.MemberAuth;
+import com.domino.domain.SearchType;
 import com.domino.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -120,7 +122,7 @@ public class mainController {
 
 		return "domino/adminPage";
 	}
-	
+
 	@PostMapping("/memberDelete/{no}")
 	public String memberDelete(@PathVariable int no, Model model) {
 		// 멤버 업데이트
@@ -128,16 +130,26 @@ public class mainController {
 			memberService.deleteMember(no);
 			List<Member> memberList = memberService.selectMemberList();
 			model.addAttribute("memberList", memberList);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "domino/adminPage";
 	}
-	
-	
-	
-	
+
+	@GetMapping("/admin/search")
+	public String search(String type, String keyword, Model model) {
+		try {
+
+			List<Member> memberList = memberService.searchMembers(new SearchType(type, keyword));
+			model.addAttribute("memberList", memberList);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "domino/adminPage";
+	}
 
 }

@@ -3,6 +3,7 @@ package com.domino.service;
 import java.util.List;
 
 import com.domino.domain.Member;
+import com.domino.domain.SearchType;
 
 public interface MemberService {
 
@@ -19,4 +20,6 @@ public interface MemberService {
 	void deleteMember(long no) throws Exception;
 
 	Member login(String id, String pw) throws Exception;
+
+	List<Member> searchMembers(SearchType searchType);
 }

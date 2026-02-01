@@ -30,9 +30,11 @@
 	<!-- id를 매개로 특정 사용자의 권한 리스트를 받아오는 조인 쿼리 -->
 	<select id="selectMemberAuthListById" parameterType="String"
 		resultMap="MemberMap">
-		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth from dominoMember D join
+		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth
+		from dominoMember D join
 		memberAuth A on
-		D.no =A.no where D.id = #{id, jdbcType=VARCHAR} and D.enabled = 1
+		D.no =A.no where D.id = #{id,
+		jdbcType=VARCHAR} and D.enabled = 1
 	</select>
 
 	<resultMap type="Member" id="MemberMap">
@@ -59,15 +61,18 @@
 
 	<!-- 모든 사용자를 받아옴 -->
 	<select id="selectAllOfMembers" resultMap="MemberMap2">
-		select no,name,age,gender from dominoMember where enabled = 1
+		select
+		no,name,age,gender from dominoMember where enabled = 1
 	</select>
 
 	<!-- no를 매개로 특정 사용자의 권한 리스트를 받아오는 조인 쿼리 -->
 	<select id="selectOneMemberByNo" parameterType="long"
 		resultMap="MemberMap">
-		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth from dominoMember D join
+		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth
+		from dominoMember D join
 		memberAuth A on
-		D.no =A.no where D.no = #{no} and D.enabled = 1
+		D.no =A.no where D.no = #{no}
+		and D.enabled = 1
 	</select>
 
 
@@ -78,13 +83,27 @@
 		age=#{age},
 		birthday=#{birthday},
 		gender=#{gender}
-		 where no = #{no}
+		where no = #{no}
 	</update>
-	
+
 	<delete id="deleteMember" parameterType="long">
-		update dominoMember set enabled = 0 where no = #{no} and enabled = 1
+		update dominoMember set
+		enabled = 0 where no = #{no} and enabled = 1
 	</delete>
 
+
+	<select id="searchMember" parameterType="SearchType" resultMap="MemberMap2">
+		SELECT * FROM dominoMember
+		WHERE enabled = 1
+		<choose>
+			<when test="type == 'name'">
+				and name LIKE '%' || #{keyword} || '%'  
+			</when>
+			<when test="type == 'age'">
+				and age = #{keyword}
+			</when>
+		</choose>
+	</select>
 
 
 

@@ -108,7 +108,7 @@ tr:hover {
 	<!-- 검색 폼: 스프링 컨트롤러로 전송 -->
 	<form action="/domino/admin/search" method="get"
 		class="search-container">
-		<select name="searchOption" id="searchOption">
+		<select name="type" id="type">
 			<option value="name">이름</option>
 			<option value="age">나이</option>
 		</select> <input type="text" name="keyword" id="keyword" placeholder="검색어 입력">
