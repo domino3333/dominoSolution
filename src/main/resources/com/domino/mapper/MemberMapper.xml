@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.domino.mapper.MemberMapper"></mapper>
+<mapper namespace="com.domino.mapper.MemberMapper">
+
+
+	<insert id="insertMember" parameterType="Member">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+			dominomember_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO dominoMember(
+		no,
+		id,
+		PW,
+		name,age,birthday,gender
+		)
+		VALUES(#{no},#{id},#{pw},#{name},#{age},#{birthday},#{gender})
+	</insert>
+
+</mapper>

@@ -1,9 +1,11 @@
 package com.domino.mapper;
 
+import com.domino.domain.Member;
+
 public interface MemberMapper {
-//	public void create(Board board) throws Exception;
-//	public Board read(Integer boardNo) throws Exception;
-//	public void update(Board board) throws Exception;
-//	public void delete(Integer boardNo) throws Exception;
-//	public List<Board> list() throws Exception;
+	
+	
+	void insertMember(Member member);
+	
+
 }
