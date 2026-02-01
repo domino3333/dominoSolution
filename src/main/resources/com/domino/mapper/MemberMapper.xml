@@ -22,7 +22,7 @@
 	<select id="selectOneMemberById" parameterType="String"
 		resultType="Member">
 		select id,pw from dominoMember where id = #{id,
-		jdbcType=VARCHAR}
+		jdbcType=VARCHAR} and enabled = 1
 	</select>
 
 
@@ -32,7 +32,7 @@
 		resultMap="MemberMap">
 		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth from dominoMember D join
 		memberAuth A on
-		D.no =A.no where D.id = #{id, jdbcType=VARCHAR}
+		D.no =A.no where D.id = #{id, jdbcType=VARCHAR} and D.enabled = 1
 	</select>
 
 	<resultMap type="Member" id="MemberMap">
@@ -59,7 +59,7 @@
 
 	<!-- 모든 사용자를 받아옴 -->
 	<select id="selectAllOfMembers" resultMap="MemberMap2">
-		select no,name,age,gender from dominoMember
+		select no,name,age,gender from dominoMember where enabled = 1
 	</select>
 
 	<!-- no를 매개로 특정 사용자의 권한 리스트를 받아오는 조인 쿼리 -->
@@ -67,7 +67,7 @@
 		resultMap="MemberMap">
 		select D.no, D.id,D.name,D.age,D.birthday,D.gender,A.auth from dominoMember D join
 		memberAuth A on
-		D.no =A.no where D.no = #{no}
+		D.no =A.no where D.no = #{no} and D.enabled = 1
 	</select>
 
 
@@ -80,6 +80,10 @@
 		gender=#{gender}
 		 where no = #{no}
 	</update>
+	
+	<delete id="deleteMember" parameterType="long">
+		update dominoMember set enabled = 0 where no = #{no} and enabled = 1
+	</delete>
 
 
 

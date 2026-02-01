@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public void deleteMember(long no) throws Exception {
-
+		memberMapper.deleteMember(no);
 	}
 
 	@Override

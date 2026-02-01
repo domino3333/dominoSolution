@@ -120,5 +120,24 @@ public class mainController {
 
 		return "domino/adminPage";
 	}
+	
+	@PostMapping("/memberDelete/{no}")
+	public String memberDelete(@PathVariable int no, Model model) {
+		// 멤버 업데이트
+		try {
+			memberService.deleteMember(no);
+			List<Member> memberList = memberService.selectMemberList();
+			model.addAttribute("memberList", memberList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "domino/adminPage";
+	}
+	
+	
+	
+	
 
 }

@@ -14,6 +14,7 @@ public interface MemberMapper {
 	Member selectMemberAuthListById(String id);
 	List<Member> selectAllOfMembers();
 	void updateMember(Member member);
+	void deleteMember(long no);
 	
 
 }
